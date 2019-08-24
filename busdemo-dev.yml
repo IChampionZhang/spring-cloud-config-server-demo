@@ -1,0 +1,47 @@
+server:
+  port: 10005
+  
+spring:
+  application:
+    name: bus-demo
+    
+  cloud:
+    stream:
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 10.117.2.100
+                port: 5672
+                username: admin
+                password: admin
+                publisher-confirms: true
+      bindings:
+        springCloudBusInput:
+          binder: rabbit1
+        springCloudBusOutput:
+          binder: rabbit1
+    bus:
+      destination: bus-queue
+      trace:
+        enabled: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10000/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+          
+                
+name: '{cipher}2cbdee314bda2d35b5531edc331b70b9c557068f8d0df43bc1e5fad56f4403a2'
+age: 31
+password: 66666666666
+sex: male
+habbit: games
