@@ -16,7 +16,7 @@ spring:
           environment:
             spring:
               rabbitmq:
-                host: 10.117.2.100
+                host: rabbitmq ip
                 port: 5672
                 username: admin
                 password: admin
@@ -34,19 +34,18 @@ spring:
     config:
       server:
         git:
-          #uri: D:\Champion\workspace\spring-cloud-config-server-demo\src\main\resources\configs
           uri: https://github.com/IChampionZhang/springcloudconfig.git
-          username: IChampionZhang
-          password: ambit123!
-          basedir: D:\Champion\workspace\spring-cloud-config-server-demo\src\main\resources\config-repo
+          username: github 用户名
+          password: github 密码
+          basedir: 从 github 上拉取配置后的本地存放目录
           clone-on-start: true
           proxy:
             http:
-              host: 10.64.32.101
-              port: 8080
+              host: 代理 ip
+              port: 代理端口
             https:
-              host: 10.64.32.101
-              port: 8080
+              host: 代理 ip
+              port: 代理端口
         encrypt:
           enabled: true # 启用加密功能，秘钥的key在 bootstrap.xml 文件中，应用启动后可以访问 http://localhost:9002/encrypt post 请求的方式输入要加密的内容，也可以访问 http://localhost:9002/decrypt post 的请求的方式输入需要解密的密文
 eureka:
