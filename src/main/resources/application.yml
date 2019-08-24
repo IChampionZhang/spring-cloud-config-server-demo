@@ -1,0 +1,62 @@
+server:
+  port: 9002
+ 
+spring:
+  application:
+    name: config-server-demo
+#  security:
+#    user:
+#      name: user
+#      password: 123456
+  cloud:
+    stream:
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 10.117.2.100
+                port: 5672
+                username: admin
+                password: admin
+                publisher-confirms: true
+      bindings:
+        springCloudBusInput:
+          binder: rabbit1
+        springCloudBusOutput:
+          binder: rabbit1
+    bus:
+      destination: bus-queue
+      trace:
+        enabled: true
+    
+    config:
+      server:
+        git:
+          #uri: D:\Champion\workspace\spring-cloud-config-server-demo\src\main\resources\configs
+          uri: https://github.com/IChampionZhang/springcloudconfig.git
+          username: IChampionZhang
+          password: ambit123!
+          basedir: D:\Champion\workspace\spring-cloud-config-server-demo\src\main\resources\config-repo
+          clone-on-start: true
+          proxy:
+            http:
+              host: 10.64.32.101
+              port: 8080
+            https:
+              host: 10.64.32.101
+              port: 8080
+        encrypt:
+          enabled: true # 启用加密功能，秘钥的key在 bootstrap.xml 文件中，应用启动后可以访问 http://localhost:9002/encrypt post 请求的方式输入要加密的内容，也可以访问 http://localhost:9002/decrypt post 的请求的方式输入需要解密的密文
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10000/eureka/
+     
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+          
