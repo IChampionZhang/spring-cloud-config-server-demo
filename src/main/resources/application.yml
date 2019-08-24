@@ -34,7 +34,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/IChampionZhang/springcloudconfig.git
+          uri: https://github.com/IChampionZhang/spring-cloud-config-server-demo.git
           username: github 用户名
           password: github 密码
           basedir: 从 github 上拉取配置后的本地存放目录
